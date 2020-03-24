@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 ps -elf | grep java | grepv -v java
 ps -elf | grep java | grepv -v java | awk '{print $2}'
 kill -9 `ps -elf | grep java | grepv -v java | awk '{print $2}'`
