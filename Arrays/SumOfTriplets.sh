@@ -10,7 +10,7 @@ for((i=0;i<$len;i++))
 				if [ $(( ${arr[$i]} + ${arr[$j]} + ${arr[$k]} )) -eq 0 ]
 								then
 					echo "Triplets are: ${arr[$i]} ${arr[$j]} ${arr[$k]}"
-			fi
+				fi
 		done
 	done
 done
