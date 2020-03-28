@@ -5,8 +5,10 @@ for((i=1;i<=10;i++))
       rand[$i]=$(($RANDOM%400 + 100))
 
 done
-arr2=($(echo ${rand[*]}| tr " " "\n" | sort -n))
+arrSmallest=($(echo ${rand[*]}| tr " " "\n"  | sort -n))
+arrLargest=($(echo ${rand[*]}|   tr " " "\n" | sort -nr))
 echo "Before Sorting:" ${rand[*]}
-echo "After Sorting:" ${arr2[*]}
-echo "Second smallest number is:" ${arr2[1]}
-echo "Second Largest Number is:" ${arr2[8]}
+echo "After Sorting:" ${arrSmallest[*]}
+echo "Second smallest number is:" ${arrSmallest[1]}
+echo "After Sorting:" ${arrLargest[*]}
+echo "Second Largest Number is:" ${arrLargest[1]}
