@@ -1,8 +1,10 @@
 declare -A dice
+function initializeDice() {
 for (( i=1;i<=6;i++ ))
 	do
 		dict[i]=0
 	done
+}
 #function for getting dice value 
 function getCurrentDicevalue() {
 rand=$(($(($RANDOM%6))+1))
@@ -11,11 +13,11 @@ echo $rand
 function start(){
 for((  ; ; ))
 	do
-	val="$(getCurrentDicevalue)"
-	dict[$val]=$((${dict[$val]}+1))
-	if [ ${dict[$val]} -eq 10 ]
+	dicePosition="$(getCurrentDicevalue)"
+	dict[$dicePosition]=$((${dict[$dicePosition]}+1))
+	if [ ${dict[$dicePosition]} -eq 10 ]
 		then
-			maxValue=$val
+			maxValuePosition=$dicePosition
 			break
 		fi
 	done
@@ -25,15 +27,18 @@ echo "Number on each sides of dice:"  ${!dict[*]}
 #function to find minimum number
 function findMin() {
 minValue=${dict[1]}
-for ((i=1;i<=${#dict[*]};i++))
+minValuePosition=1
+for ((i=2;i<=${#dict[*]};i++))
 do
-	if [ $minValue  -gt ${dict[i]} ]
+	if [ ${dict[i]} -le $minValue ]
 		then
-		minValue=$i
+		minValue=${dict[i]}
+		minValuePosition=$i
 	fi
 done
 }
+initializeDice
 start
 findMin
-echo "The number which occured minimum times is:" $minValue
-echo "The number that reachead maximun times is:" $maxValue
+echo "The number which occured minimum times is:" $minValuePosition
+echo "The number that reachead maximun times is:" $maxValuePosition
